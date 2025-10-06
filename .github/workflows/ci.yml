@@ -1,4 +1,4 @@
-iname: CI-CD Demo
+filename: CI-CD Demo
 
 on:
   push:
