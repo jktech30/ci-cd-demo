@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+iname: CI-CD Demo
 
 on:
   push:
@@ -7,23 +7,33 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout repository code
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
 
+    # Step 2: Set up Node.js in GitHub Actions environment
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '10.9.3'
+
+    # Step 3: Install dependencies (npm install)
     - name: Install dependencies
       run: npm install
 
-    - name: Run tests
+    # Step 4: Install dev dependencies (jest)
+    - name: Install dev dependencies
+      run: npm install --save-dev jest
+
+    # Step 5: Run tests
+    - name: Run Jest tests
       run: npm test
 
-    - name: Deploy (Mock)
-      run: echo "Deploying application..."
+    # Step 6: Run main script
+    - name: Run index.js
+      run: node index.js
 
