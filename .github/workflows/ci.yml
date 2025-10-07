@@ -36,4 +36,9 @@ jobs:
     # Step 6: Run main script
     - name: Run index.js
       run: node index.js
+  
+    # Step 7: Deploy Mock test
+    - name: Deploy (Mock)
+      run: echo "Deploying Application.."
+
 
